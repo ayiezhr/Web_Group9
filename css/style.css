@@ -1,0 +1,398 @@
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/*===========================================
+  CSS for header in every page
+  !*Specify your own banner image
+===========================================*/
+.header {
+	background: url('../img/BANNER.jpg') center/cover no-repeat;
+    height: 300px;
+    text-align: center;
+	color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+/*===========================================
+  CSS for footer in every page
+===========================================*/ 
+footer{
+	text-align: center;
+	font-size: 12px;
+	color: #000000
+}
+
+h1 {
+    font-size: 65px;
+    color: #000000
+}
+
+/*===========================================
+  CSS for index.php (student // lecturer )
+===========================================*/ 
+
+.imgcontainer{
+	width: 150px; 
+    height: 150px; 
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; 
+    margin: 0 auto; 
+}
+
+.avatar {
+	width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    display: block;
+}
+
+.container {
+	max-width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: left;
+	/* border: 1px solid #ddd;
+	border-radius: 5px; */
+   }
+   
+   .input-container {
+	margin-bottom: 10px;
+   }
+   
+   .input-container label {
+	display: block;
+	margin-bottom: 10px;
+	text-align: left;
+   }
+   
+   .input-container input {
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+   }
+   
+   .button-container {
+	text-align: center;
+   }
+   
+   .button-container button {
+	background-color: #3399FF; /* Updated color */
+	color: white;
+	width: 100%;
+	height: 40px;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	/* border-radius: 5px; */
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+   }
+   
+   .button-container button:hover {
+	background-color: #1E6B96; /* Updated color */
+   }
+   
+/*===========================================
+  CSS for register (student // lecturer )
+===========================================*/
+
+   #registerDiv {
+	display: none;
+    width: 40%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the registration form horizontally */
+    padding: 20px;
+	/* border: 1px solid #ccc;
+	border-radius: 5px; */
+	}
+
+	#registerDiv label {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	#registerDiv input[type="text"], #registerDiv input[type="email"], #registerDiv input[type="password"] {
+		width: 100%;
+		padding: 8px;
+		margin-bottom: 15px;
+		border: 1px solid #ccc;
+		outline: none;
+		border-radius: 3px;
+	}
+	#registerDiv input[type="submit"], #registerDiv input[type="reset"] {
+		width: 30%;
+		padding: 8px;
+		margin-bottom: 10px;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+
+	#registerDiv input[type="reset"], #registerDiv input[type="submit"] {
+		background-color: #ccc;
+	}
+	#registerDiv input[type="reset"]:hover, #registerDiv input[type="submit"]:hover {
+		background-color: #d1d1d1;
+	}
+
+/* Add this style to center the login form */
+.container.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Add this style to move the login form to the side */
+.container.registration-container {
+    display: none; /* Hide by default */
+}
+
+/* Add this style to center the registration form */
+#registerDiv {
+    text-align: center;
+}
+
+/* Add this style to move the registration form to the side */
+#registerDiv.hide-registration {
+    display: none;
+}
+
+
+/*===========================================
+  CSS for profile.php
+===========================================*/ 
+td {
+    padding: 10px;
+    height: 40px;
+    font-size: 16px;
+}
+/*===========================================
+  CSS used for responsive div in index.php
+  and profile.php using flex.
+===========================================*/
+.row {
+	display: flex;
+	flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.col-login, .col-left{	
+	text-align: center; 
+	flex: 20%;
+	padding: 15px;
+}
+.col-news, .col-right {	
+	flex: 70%; 
+	padding: 15px;
+}
+/*===========================================*/
+
+/*===========================================
+  CSS for image (profile photo) in profile.php
+=============================================*/		
+.image {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*================================
+
+/*===========================================
+  CSS for index in index.php
+=============================================*/
+
+ /* Add this style for centering content */
+.center-content {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+/* Modify this style for larger buttons */
+.large-button {
+    padding: 15px 30px; /* Adjust padding as needed */
+    font-size: 18px; /* Adjust font size as needed */
+}
+
+/*===========================================
+  CSS for navigation in all php file
+=============================================*/
+
+nav.topnav {
+    background-color: #2c3e50; /* Set your desired background color */
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav.topnav a {
+    float: left;
+    display: block;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+nav.topnav a:hover {
+    background-color: #34495e; /* Set your desired hover color */
+    color: #fff;
+}
+
+nav.topnav a.active {
+    background-color: #2980b9; /* Set your desired active color */
+    color: #fff;
+}
+
+nav.topnav .icon {
+    display: none;
+}
+
+/* Responsive styles for mobile */
+@media screen and (max-width: 600px) {
+    nav.topnav a:not(:first-child) {
+        display: none;
+    }
+
+    nav.topnav a.icon {
+        float: right;
+        display: block;
+    }
+
+    /* Adjust the color and size of the icon for mobile */
+    nav.topnav a.icon i {
+        font-size: 24px;
+        color: #ecf0f1;
+    }
+}
+
+
+/*===========================================
+  CSS for the table 
+=============================================*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+/* Set background color for the first row */
+table tr:first-child {
+    background-color: #2c3e50; /* Same color as the navigation background */
+    color: #ecf0f1; /* Text color for the first row */
+}
+
+/* Set background color for alternating rows */
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Adjust as needed */
+}
+
+/* Hover effect for rows */
+table tr:hover {
+    background-color: #3498db; /* Adjust as needed */
+    color: #fff; /* Text color for the hovered row */
+}
+
+
+/*===========================================
+  CSS for the table with blue and white sides 
+=============================================*/
+
+
+.blue-white-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.blue-white-table,
+.blue-white-table th,
+.blue-white-table td {
+    border: 1px solid #000000;
+}
+
+.blue-white-table th,
+.blue-white-table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.blue-white-table .white-side {
+    background-color: #fff; 
+	color: #000;
+}
+
+.blue-white-table .blue-side {
+    background-color: #2c3e50; 
+    color: #fff;
+}
+
+.blue-white-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Adjust as needed */
+}
+
+.blue-white-table tr:hover {
+    background-color: #2c3e50; /* Adjust as needed */
+    color: #000000; /* Text color for the hovered row */
+}
+
+.blue-white-table input[type="text"],
+.blue-white-table select,
+.blue-white-table textarea,
+.blue-white-table input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style for the right side of the second table */
+.blue-white-table .col-right {
+    background-color: #2c3e50;
+    padding: 10px;
+    color: #000000;
+}
+
+/* Style for the left side of the second table */
+.blue-white-table .col-left {
+    padding: 10px;
+}
+
+.blue-white-table .smaller-row {
+    height: 15px; /* Adjust the height as needed */
+}
