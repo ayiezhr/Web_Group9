@@ -62,24 +62,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <?php include 'lecturer_logged_menu.php'; ?>
 
-               <div style="padding: 20px; text-align: center;">
-					<form method="post" action="edit_event_leave_form.php">
-						<input type="hidden" name="id" value="<?php echo $row['event_id']; ?>">
-						<label for="newStatus">New Status:</label>
-						<select name="newStatus" style="font-size: 16px; padding: 5px;">
-							<option value="Pending" <?php echo ($row['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
-							<option value="Approved" <?php echo ($row['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
-							<option value="Rejected" <?php echo ($row['status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
-						</select>
-						<br>
-						<input type="submit" value="Update Status" style="font-size: 16px; padding: 8px;">
-					</form>
-				</div>
-
+                <div style="padding: 20px; text-align: center;">
+                    <form method="post" action="edit_event_leave_form.php">
+                        <input type="hidden" name="id" value="<?php echo $row['event_id']; ?>">
+                        <label for="newStatus">New Status:</label>
+                        <select name="newStatus" style="font-size: 16px; padding: 5px;">
+                            <option value="Pending" <?php echo ($row['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                            <option value="Approved" <?php echo ($row['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                            <option value="Rejected" <?php echo ($row['status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+                        </select>
+                        <br>
+                        <input type="submit" value="Update Status" style="font-size: 16px; padding: 8px;">
+                    </form>
+                </div>
 
             <footer>
-				<p>Copyright (c) 2024 - FKI Leave Management System (GROUP 9)</p>
-			</footer>
+                <p>Copyright (c) 2024 - FKI Leave Management System (GROUP 9)</p>
+            </footer>
             </body>
 
             </html>
