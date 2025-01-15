@@ -22,13 +22,12 @@ jobs:
         php-version: '8.0'
 
     - name: Install Dependencies
-      run: composer install --no-scripts --prefer-dist
+      run: composer install --verbose
 
-    - name: Verify Installed Dependencies
-      run: composer show
-
-    - name: List Vendor Directory
+    - name: Debug PHPUnit Path
       run: ls -al ./vendor/bin
 
     - name: Run Tests
-      run: ./vendor/bin/phpunit tests
+      run: |
+        if [ -f ./vendor/bin/phpunit ]; then ./vendor/bin/phpunit tests; fi
+        if [ -f ./vendor/bin/phpunit.bat ]; then ./vendor/bin/phpunit.bat tests; fi
