@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include "config.php";
 
 // Check if the user is logged in as a lecturer
 if (!isset($_SESSION["lecturer_id"])) {
