@@ -16,10 +16,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Set up PHP
+    - name: Setup PHP Action
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '10.1.16'
+        php-version: '8.3'
 
     - name: Install Dependencies
       run: composer install
