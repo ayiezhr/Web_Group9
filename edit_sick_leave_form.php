@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include "config.php";
 
 // Check if the user is logged in as a lecturer
 if (!isset($_SESSION["lecturer_id"])) {
@@ -87,11 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
         } else {
             echo "Invalid sick leave ID or you don't have permission to access this entry.<br>";
-            echo '<a href="lecturer_leave_approval.php">Back</a>';
         }
     } else {
         echo "Sick leave ID not provided.<br>";
-        echo '<a href="lecturer_leave_approval.php">Back</a>';
     }
 }
 ?>
