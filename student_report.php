@@ -66,7 +66,19 @@ $eventLeaveApplications = $student_id ? getEventLeaveApplications($conn, $studen
                 <div style="text-align: right; padding: 10px;">
                     <form action="sick_leave_search.php" method="post">
                         <input type="text" placeholder="Search.." name="search">
-                        <input type="submit" value="Search">
+						<select name="semester">
+							<option value="">All Semesters</option>
+							<option value="Fall" <?php echo (isset($_GET['semester']) && $_GET['semester'] == 'Fall') ? 'selected' : ''; ?>>Fall</option>
+							<option value="Spring" <?php echo (isset($_GET['semester']) && $_GET['semester'] == 'Spring') ? 'selected' : ''; ?>>Spring</option>
+							<!-- Add other semesters here -->
+						</select>
+						<select name="status">
+							<option value="">All Statuses</option>
+							<option value="Pending" <?php echo (isset($_GET['status']) && $_GET['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+							<option value="Approved" <?php echo (isset($_GET['status']) && $_GET['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+							<option value="Rejected" <?php echo (isset($_GET['status']) && $_GET['status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+						</select>
+						<input type="submit" value="Search" />
                     </form>
                 </div>
 				
