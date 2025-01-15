@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 $lecturerId = $_SESSION['lecturer_id'];
 
