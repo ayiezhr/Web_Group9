@@ -22,7 +22,13 @@ jobs:
         php-version: '8.0'
 
     - name: Install Dependencies
-      run: composer install --no-dev
-
+      run: composer install --no-scripts --prefer-dist
+      
+    - name: Verify Installed Dependencies
+      run: composer show
+      
     - name: Run Tests
       run: ./vendor/bin/phpunit tests
+
+    - name: List Vendor Directory
+      run: ls -al ./vendor/bin
