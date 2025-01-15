@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "fki_leave";
+$dbname = "fkileave";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
