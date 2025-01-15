@@ -1,12 +1,12 @@
 <?php
 session_start();
-include("config.php");
+include_once "config.php";
 
 function searchEventLeaveApplications($conn, $student_id, $searchTerm) {
-    $sql = "SELECT * FROM event_leave_form 
-            WHERE student_id = $student_id 
-            AND (sem LIKE '%$searchTerm%' OR year LIKE '%$searchTerm%' 
-                OR courseCode LIKE '%$searchTerm%' OR reason LIKE '%$searchTerm%' 
+    $sql = "SELECT * FROM event_leave_form
+            WHERE student_id = $student_id
+            AND (sem LIKE '%$searchTerm%' OR year LIKE '%$searchTerm%'
+                OR courseCode LIKE '%$searchTerm%' OR reason LIKE '%$searchTerm%'
                 OR exemption_letter_path LIKE '%$searchTerm%' OR status LIKE '%$searchTerm%')";
     
     $result = mysqli_query($conn, $sql);
@@ -30,7 +30,7 @@ $eventLeaveApplications = searchEventLeaveApplications($conn, $student_id, $sear
 <head>
     <title>FKI Leave Management - Event Leave Search Results</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 </head>
 
 <body>
@@ -38,7 +38,7 @@ $eventLeaveApplications = searchEventLeaveApplications($conn, $student_id, $sear
         <h1>Leave Application</h1>
     </div>
 
-    <?php 
+    <?php
         if(isset($_SESSION["student_id"])){
             include 'student_logged_menu.php';
         } else {
@@ -81,7 +81,6 @@ $eventLeaveApplications = searchEventLeaveApplications($conn, $student_id, $sear
 		<p>Copyright (c) 2024 - FKI Leave Management System (GROUP 9)</p>
 	</footer>
 	
-
 	<script>
 	
 	function myFunction() {
@@ -93,7 +92,7 @@ $eventLeaveApplications = searchEventLeaveApplications($conn, $student_id, $sear
 		}
 	}
 
-	function show_AddEntry(divId) {  
+	function show_AddEntry(divId) {
 		var x = document.getElementById(divId);
 		x.style.display = 'block';
 		var firstField = x.querySelector('select');
