@@ -4,12 +4,26 @@ include("config.php");
 
 // Function to retrieve sick leave applications based on search
 function searchSickLeaveApplications($conn, $student_id, $searchTerm) {
-    $sql = "SELECT * FROM sick_leave_form 
-            WHERE student_id = $student_id 
-            AND (sem LIKE '%$searchTerm%' OR year LIKE '%$searchTerm%' 
-                OR courseCode LIKE '%$searchTerm%' OR reason LIKE '%$searchTerm%' 
-                OR medical_certificate_path LIKE '%$searchTerm%' OR status LIKE '%$searchTerm%')";
-    
+    $sql = "SELECT * FROM sick_leave_form WHERE student_id = $student_id";
+
+    // Add search term filter
+    if ($searchTerm != "") {
+        $sql .= " AND (sem LIKE '%$searchTerm%' OR year LIKE '%$searchTerm%' 
+                    OR courseCode LIKE '%$searchTerm%' OR reason LIKE '%$searchTerm%' 
+                    OR medical_certificate_path LIKE '%$searchTerm%' OR status LIKE '%$searchTerm%')";
+    }
+
+    // Add semester filter if specified
+    if ($semester != "") {
+        $sql .= " AND sem = '$semester'";
+    }
+
+    // Add status filter if specified
+    if ($status != "") {
+        $sql .= " AND status = '$status'";
+    }
+
+    // Execute the query
     $result = mysqli_query($conn, $sql);
 
     if ($result === false) {
@@ -19,11 +33,16 @@ function searchSickLeaveApplications($conn, $student_id, $searchTerm) {
     return $result;
 }
 
+// Get session student_id
 $student_id = $_SESSION["student_id"];
-$searchTerm = isset($_POST["search"]) ? mysqli_real_escape_string($conn, $_POST["search"]) : "";
 
-// Retrieve sick leave applications based on search
-$sickLeaveApplications = searchSickLeaveApplications($conn, $student_id, $searchTerm);
+// Get POST data for search term, semester, and status
+$searchTerm = isset($_POST["search"]) ? mysqli_real_escape_string($conn, $_POST["search"]) : "";
+$semester = isset($_POST["semester"]) ? mysqli_real_escape_string($conn, $_POST["semester"]) : "";
+$status = isset($_POST["status"]) ? mysqli_real_escape_string($conn, $_POST["status"]) : "";
+
+// Retrieve sick leave applications based on the search filters
+$sickLeaveApplications = searchSickLeaveApplications($conn, $student_id, $searchTerm, $semester, $status);
 ?>
 
 <!DOCTYPE html>
