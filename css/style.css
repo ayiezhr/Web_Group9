@@ -60,8 +60,6 @@ h1 {
 	margin: 0 auto;
 	padding: 20px;
 	text-align: left;
-	/* border: 1px solid #ddd;
-	border-radius: 5px; */
    }
    
    .input-container {
@@ -94,7 +92,6 @@ h1 {
 	padding: 10px 20px;
 	border: none;
 	cursor: pointer;
-	/* border-radius: 5px; */
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -117,7 +114,6 @@ h1 {
     margin: 0 auto; /* Center the registration form horizontally */
     padding: 20px;
 	/* border: 1px solid #ccc;
-	border-radius: 5px; */
 	}
 
 	#registerDiv label {
