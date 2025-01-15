@@ -87,11 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
         } else {
             echo "Invalid event leave ID or you don't have permission to access this entry.<br>";
-            echo '<a href="lecturer_leave_approval.php">Back</a>';
         }
     } else {
         echo "Event leave ID not provided.<br>";
-        echo '<a href="lecturer_leave_approval.php">Back</a>';
     }
 }
 ?>
