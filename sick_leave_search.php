@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include "config.php";
 
 // Function to retrieve sick leave applications based on search
 function searchSickLeaveApplications($conn, $student_id, $searchTerm) {
@@ -61,20 +61,26 @@ $sickLeaveApplications = searchSickLeaveApplications($conn, $student_id, $search
                 <th>Status</th>
             </tr>
             <?php
-            if (mysqli_num_rows($sickLeaveApplications) > 0) {
-                $numrow = 1;
-                while ($row = mysqli_fetch_assoc($sickLeaveApplications)) {
-                    echo "<tr>";
-                    echo "<td>" . $numrow . "</td><td>" . $row["sem"] . " " . $row["year"] . "</td><td>" . $row["courseCode"] .
-                        "</td><td>" . $row["reason"] . "</td><td>" . $row["medical_certificate_path"] . "</td><td>" . $row["status"] .
-                        "</td>";
-                    echo "</tr>";
-                    $numrow++;
-                }
-            } else {
-                echo '<tr><td colspan="6">No sick leave applications found for the given search term</td></tr>';
-            }
-            ?>
+		define('TD_SEPARATOR', '</td><td>');
+		
+		if (mysqli_num_rows($sickLeaveApplications) > 0) {
+		    $numrow = 1;
+		    while ($row = mysqli_fetch_assoc($sickLeaveApplications)) {
+		        echo "<tr>";
+		        echo "<td>" . $numrow . TD_SEPARATOR . 
+		             $row["sem"] . " " . $row["year"] . TD_SEPARATOR . 
+		             $row["courseCode"] . TD_SEPARATOR . 
+		             $row["reason"] . TD_SEPARATOR . 
+		             $row["medical_certificate_path"] . TD_SEPARATOR . 
+		             $row["status"] . 
+		             "</td>";
+		        echo "</tr>";
+		        $numrow++;
+		    }
+		} else {
+		    echo '<tr><td colspan="6">No sick leave applications found for the given search term</td></tr>';
+		}
+		?>
         </table>
     </div>
 
