@@ -1,7 +1,9 @@
 <?php
 session_start();
 include("config.php");
+include("includes/db_queries.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -65,8 +67,8 @@ include("config.php");
                     <th width="10%">Approval</th>
                 </tr>
                 <?php
-                $sql = "SELECT * FROM sick_leave_form WHERE lecturer_id = " . $_SESSION["lecturer_id"];
-                $result = mysqli_query($conn, $sql);
+                $sickLeaveData = fetchLeaveForms($conn, "sick_leave_form", $_SESSION["lecturer_id"]);
+
 
                 if ($result === false) {
                     // Handle query error
@@ -75,14 +77,15 @@ include("config.php");
 
                 if (mysqli_num_rows($result) > 0) {
                     $numrow = 1;
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = $sickLeaveData->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $numrow . "</td><td>" . $row["sem"] . " " . $row["year"] . "</td><td>" . $row["courseCode"] .
-                            "</td><td>" . $row["reason"] . "</td><td>" . $row["medical_certificate_path"] .  "</td><td>" . $row["status"] . "</td>";
+                            "</td><td>" . $row["reason"] . "</td><td>" . $row["medical_certificate_path"] . "</td><td>" . $row["status"] . "</td>";
                         echo '<td> <a href="edit_sick_leave_form.php?id=' . $row["sick_id"] . '">Edit</a>';
                         echo "</tr>" . "\n\t\t";
                         $numrow++;
                     }
+                    
                 } else {
                     echo '<tr><td colspan="6">0 results</td></tr>';
                 }
@@ -108,8 +111,8 @@ include("config.php");
                     <th width="10%">Approval</th>
                 </tr>
                 <?php
-                $sql = "SELECT * FROM event_leave_form WHERE lecturer_id = " . $_SESSION["lecturer_id"];
-                $result = mysqli_query($conn, $sql);
+                $eventLeaveData = fetchLeaveForms($conn, "event_leave_form", $_SESSION["lecturer_id"]);
+
 
                 if ($result === false) {
                   
@@ -118,7 +121,7 @@ include("config.php");
 
                 if (mysqli_num_rows($result) > 0) {
                     $numrow = 1;
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = $eventLeaveData->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $numrow . "</td><td>" . $row["sem"] . " " . $row["year"] . "</td><td>" . $row["courseCode"] .
                             "</td><td>" . $row["reason"] . "</td><td>" . $row["exemption_letter_path"] .  "</td><td>" . $row["status"] . "</td>";
