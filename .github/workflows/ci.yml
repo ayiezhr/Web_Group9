@@ -1,33 +1,21 @@
-name: CI Pipeline
+name: CI PHP
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build-and-test:
+  super-lint:
+    name: Lint code base
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.0'
-
-    - name: Install Dependencies
-      run: composer install --verbose
-
-    - name: Debug PHPUnit Path
-      run: ls -al ./vendor/bin
-
-    - name: Run Tests
-      run: |
-        if [ -f ./vendor/bin/phpunit ]; then ./vendor/bin/phpunit tests; fi
-        if [ -f ./vendor/bin/phpunit.bat ]; then ./vendor/bin/phpunit.bat tests; fi
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
