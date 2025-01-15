@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include "config.php";
 
 // Function to retrieve sick leave applications
 function getSickLeaveApplications($conn, $student_id) {
@@ -80,20 +80,25 @@ $eventLeaveApplications = $student_id ? getEventLeaveApplications($conn, $studen
                         <th>Status</th>
                     </tr>
                     <?php
-                    if (mysqli_num_rows($sickLeaveApplications) > 0) {
-                        $numrow = 1;
-                        while ($row = mysqli_fetch_assoc($sickLeaveApplications)) {
-                            echo "<tr>";
-                            echo "<td>" . $numrow . "</td><td>" . $row["sem"] . " " . $row["year"] . "</td><td>" . $row["courseCode"] .
-                                "</td><td>" . $row["reason"] . "</td><td>" . $row["medical_certificate_path"] . "</td><td>" . $row["status"] .
-                                "</td>";
-                            echo "</tr>";
-                            $numrow++;
-                        }
-                    } else {
-                        echo '<tr><td colspan="7">No sick leave applications found</td></tr>';
-                    }
-                    ?>
+                    define('TD_SEPARATOR', '</td><td>');
+
+		if (mysqli_num_rows($sickLeaveApplications) > 0) {
+		    $numrow = 1;
+		    while ($row = mysqli_fetch_assoc($sickLeaveApplications)) {
+		        echo "<tr>";
+		        echo "<td>" . $numrow . TD_SEPARATOR . 
+		             $row["sem"] . " " . $row["year"] . TD_SEPARATOR . 
+		             $row["courseCode"] . TD_SEPARATOR . 
+		             $row["reason"] . TD_SEPARATOR . 
+		             $row["medical_certificate_path"] . TD_SEPARATOR . 
+		             $row["status"] . 
+		             "</td>";
+		        echo "</tr>";
+		        $numrow++;
+		    }
+		} else {
+		    echo '<tr><td colspan="7">No sick leave applications found</td></tr>';
+		}
                 </table>
             <?php else : ?>
                 <p>No sick leave applications found.</p>
@@ -122,18 +127,22 @@ $eventLeaveApplications = $student_id ? getEventLeaveApplications($conn, $studen
                     </tr>
                     <?php
                     if (mysqli_num_rows($eventLeaveApplications) > 0) {
-                        $numrow = 1;
-                        while ($row = mysqli_fetch_assoc($eventLeaveApplications)) {
-                            echo "<tr>";
-                            echo "<td>" . $numrow . "</td><td>" . $row["sem"] . " " . $row["year"] . "</td><td>" . $row["courseCode"] .
-                                "</td><td>" . $row["reason"] . "</td><td>" . $row["exemption_letter_path"] . "</td><td>" . $row["status"] .
-                                "</td>";
-                            echo "</tr>";
-                            $numrow++;
-                        }
-                    } else {
-                        echo '<tr><td colspan="7">No event leave applications found</td></tr>';
-                    }
+			    $numrow = 1;
+			    while ($row = mysqli_fetch_assoc($eventLeaveApplications)) {
+			        echo "<tr>";
+			        echo "<td>" . $numrow . TD_SEPARATOR . 
+			             $row["sem"] . " " . $row["year"] . TD_SEPARATOR . 
+			             $row["courseCode"] . TD_SEPARATOR . 
+			             $row["reason"] . TD_SEPARATOR . 
+			             $row["exemption_letter_path"] . TD_SEPARATOR . 
+			             $row["status"] . 
+			             "</td>";
+			        echo "</tr>";
+			        $numrow++;
+			    }
+			} else {
+			    echo '<tr><td colspan="7">No event leave applications found</td></tr>';
+			}
                     ?>
                 </table>
             <?php else : ?>

@@ -1,29 +1,35 @@
 <?php
 session_start();
 
-// Include your database configuration file
-include("config.php");
+require_once __DIR__ . '/vendor/autoload.php'; // Autoload using Composer
 
+use App\Config; // Assuming your config class is defined under the App\Config namespace
+
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get user input
-    $userName = mysqli_real_escape_string($conn, $_POST['userName']);
-    $userPwd = mysqli_real_escape_string($conn, $_POST['userPwd']);
+    // Check if $conn is valid
+    if (isset(Config::$conn) && Config::$conn instanceof mysqli) {
+        $conn = Config::$conn;
 
-    // Your SQL query to check lecturer credentials
-    $sql = "SELECT * FROM lecturers WHERE lecturerNo = '$userName'";
-    
-    // Check if $conn is a valid mysqli object
-    if ($conn instanceof mysqli) {
-        $result = $conn->query($sql);
+        // Get user input and sanitize
+        $userName = mysqli_real_escape_string($conn, $_POST['userName']);
+        $userPwd = mysqli_real_escape_string($conn, $_POST['userPwd']);
+
+        // SQL query to check lecturer credentials
+        $sql = "SELECT * FROM lecturers WHERE lecturerNo = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $userName);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result && $result->num_rows > 0) {
-            // User found, check password
+            // User found, verify password
             $row = $result->fetch_assoc();
             if (password_verify($userPwd, $row["userPwd"])) {
                 // Password is correct, set session variables
                 $_SESSION["lecturer_id"] = $row["lecturer_id"];
-                $_SESSION["userName"] = $row["lecturerNo"]; 
-                $_SESSION["img_path"] = $row["img_path"]; 
+                $_SESSION["userName"] = $row["lecturerNo"];
+                $_SESSION["img_path"] = $row["img_path"];
 
                 // Redirect to lecturer_index.php
                 header("Location: lecturer_index.php");
@@ -36,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // User not found
             echo "User not found. Please check your username.";
         }
+
+        // Close the statement
+        $stmt->close();
     } else {
         // Connection is not valid
         echo "Database connection error.";
@@ -43,5 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the database connection
-mysqli_close($conn);
+if (isset(Config::$conn) && Config::$conn instanceof mysqli) {
+    Config::$conn->close();
+}
 ?>

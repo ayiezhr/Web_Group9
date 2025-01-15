@@ -93,12 +93,8 @@ if (isset($_POST['submit'])) {
                     echo "Sorry, there was an error uploading your profile picture.<br>";
                     echo '<a href="javascript:history.back()">Back</a>';
                 }
-            } else {
-                echo '<a href="javascript:history.back()">Back</a>';
-            }
-        } else {
-            echo '<a href="javascript:history.back()">Back</a>';
-        }
+            } 
+        } 
     }
     // If there is no image to be uploaded
     else {

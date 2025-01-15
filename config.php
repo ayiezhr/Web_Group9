@@ -1,4 +1,5 @@
 <?php
+namespace App\Config;
 // config.php
 $servername = "localhost";
 $username = "root";

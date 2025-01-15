@@ -1,6 +1,9 @@
 <?php
 session_start();
-include("config.php");
+
+require_once __DIR__ . '/vendor/autoload.php'; // Autoload using Composer
+
+use App\Config;
 
 // Check if the user is logged in as a lecturer
 if (!isset($_SESSION["lecturer_id"])) {
@@ -62,24 +65,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <?php include 'lecturer_logged_menu.php'; ?>
 
-               <div style="padding: 20px; text-align: center;">
-					<form method="post" action="edit_sick_leave_form.php">
-						<input type="hidden" name="id" value="<?php echo $row['sick_id']; ?>">
-						<label for="newStatus" style="font-size: 16px;">New Status:</label>
-						<select name="newStatus" style="font-size: 16px; padding: 5px;">
-							<option value="Pending" <?php echo ($row['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
-							<option value="Approved" <?php echo ($row['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
-							<option value="Rejected" <?php echo ($row['status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
-						</select>
-						<br>
-						<input type="submit" value="Update Status" style="font-size: 16px; padding: 8px;">
-					</form>
-				</div>
+                <div style="padding: 20px; text-align: center;">
+                    <form method="post" action="edit_sick_leave_form.php">
+                        <input type="hidden" name="id" value="<?php echo $row['sick_id']; ?>">
+                        <label for="newStatus" style="font-size: 16px;">New Status:</label>
+                        <select name="newStatus" style="font-size: 16px; padding: 5px;">
+                            <option value="Pending" <?php echo ($row['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                            <option value="Approved" <?php echo ($row['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                            <option value="Rejected" <?php echo ($row['status'] == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+                        </select>
+                        <br>
+                        <input type="submit" value="Update Status" style="font-size: 16px; padding: 8px;">
+                    </form>
+                </div>
 
-
-              <footer>
-				<p>Copyright (c) 2024 - FKI Leave Management System (GROUP 9)</p>
-			</footer>
+                <footer>
+                    <p>Copyright (c) 2024 - FKI Leave Management System (GROUP 9)</p>
+                </footer>
             </body>
 
             </html>
@@ -87,11 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
         } else {
             echo "Invalid sick leave ID or you don't have permission to access this entry.<br>";
-            echo '<a href="lecturer_leave_approval.php">Back</a>';
         }
     } else {
         echo "Sick leave ID not provided.<br>";
-        echo '<a href="lecturer_leave_approval.php">Back</a>';
     }
 }
 ?>
