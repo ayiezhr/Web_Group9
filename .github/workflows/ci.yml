@@ -1,4 +1,4 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
@@ -9,20 +9,23 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: 8.1
 
-      - name: Install dependencies
-        run: composer install
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist
 
-      - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --configuration phpunit.xml
+      - name: Debug PHPUnit Directory
+        run: ls -R vendor/phpunit/phpunit/src/
+
+      - name: Run PHPUnit Tests
+        run: ./vendor/bin/phpunit tests
